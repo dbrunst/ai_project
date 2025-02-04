@@ -1,4 +1,3 @@
-import base64
 import json
 import vertexai
 from vertexai.generative_models import GenerativeModel, Part, SafetySetting
@@ -34,7 +33,7 @@ def generate():
     vertexai.init(project="gemini-playground-441622", location="us-central1")
     textsi_1 = """
       Given a hash of ids and text, return a json object with the id and an array of only people's names without prefixes but including capitalized suffixes.
-      the reponse should just contain the json result wihtout any markdow
+      Capitalize name appropriately
       """
 
     model = GenerativeModel(
@@ -43,7 +42,7 @@ def generate():
     )
 
 
-    with open("../raw_data.json", "r") as file:
+    with open("raw_data.json", "r") as file:
       text1 = json.dumps(json.load(file))
 
     responses = model.generate_content(

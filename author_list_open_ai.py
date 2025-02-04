@@ -5,7 +5,7 @@ def generate():
   client = OpenAI()
   json_content = ''
 
-  with open("../raw_data.json", "r") as file:
+  with open("raw_data.json", "r") as file:
     json_content = json.load(file)
 
   response = client.chat.completions.create(
@@ -16,7 +16,10 @@ def generate():
         "content": [
           {
             "type": "text",
-            "text": "Given a hash of ids and text, return a json object with the id and an array of only people's names without prefixes but including capitalized suffixes"
+            "text": """
+              Given a hash of ids and text, return a json object with the id and an array of only people's names without prefixes but including capitalized suffixes.
+              Capitalize name appropriately
+              """
           }
         ]
       },
